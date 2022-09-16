@@ -64,7 +64,7 @@ export class AddemployeeComponent implements OnInit {
     {
       this.employeeService.addEmployees(fo.value);
       this.flashMessagesService.show('Thanks new employee added successfuly ! ',{cssClass:'alert-success',timeout:6000});
-      this.router.navigate([''])
+      this.router.navigate(['home'])
       console.log("false");
     }
 

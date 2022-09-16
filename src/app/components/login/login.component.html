@@ -6,7 +6,7 @@
       Sign Up
     </button>
   </mat-toolbar> -->
-
+<img  src="../../../assets/1.png" alt="logo" class="d-flex justify-content-center" style="width:30% ; margin-left: 105px;">
 <h1 class=" text-center " style="font-size:30px; "> Login</h1>
 <div class="row d-flex justify-content-center ">
     <form [formGroup]="loginForm"  (submit)="mySubmit()">
@@ -14,6 +14,9 @@
       <mat-form-field class="center margin-top"  >
 
             <input matInput placeholder="Email address" formControlName="email" type="email">
+            <mat-error *ngIf="email?.errors?.['required']">
+              Email is required
+            </mat-error>
             <mat-error *ngIf="email?.errors?.['email']">
               Please enter a correct email format
             </mat-error>

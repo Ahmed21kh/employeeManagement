@@ -64,7 +64,7 @@ export class EmployeeInfoComponent implements OnInit {
     if(confirm("Are you sure ! :(")){
       this.employeeService.deleteEmployee(this.id);
       this.flashMessagesModule.show("Employee Deleted successfully ! ",{cssClass:'alert-success',timeout:6000});
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
     }
 
   }

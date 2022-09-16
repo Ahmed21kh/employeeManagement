@@ -43,12 +43,12 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import {MatMenuModule} from '@angular/material/menu'
 
 const appRoutes:Routes=[
-  {path:'',pathMatch:'full', component:DashboardComponent},
+  {path:'home',pathMatch:'full', component:DashboardComponent},
   {path:'register', component:RegisterComponent},
   {path:'add-employee', component:AddemployeeComponent},
   {path:'edit-employee/:id', component:EditemployeeComponent},
   {path:'employee/:id', component:EmployeeInfoComponent},
-  {path:'login', component:LoginComponent},
+  {path:'', component:LoginComponent},
   {path:'register', component:RegisterComponent},
 ]
 

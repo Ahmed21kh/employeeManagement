@@ -13,7 +13,7 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  hide:boolean=true 
+  hide:boolean=true
 emaill:string
 pass:string
 loginForm = new FormGroup({
@@ -42,7 +42,7 @@ loginForm = new FormGroup({
         error:'email or password is wrong'
       })
     ).subscribe(()=>{
-        this.router.navigate([''])
+        this.router.navigate(['home'])
     })
 
 
