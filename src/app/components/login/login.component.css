@@ -31,12 +31,12 @@ mat-toolbar
 }
 .img{
   width:30% ;
-  margin-left: 105px;
+  margin: 0 auto;
 }
 @media(max-width:400px){
   .img{
     width:30% ;
-    margin-left: 70px;
+
   }
 }
 /* end */
