@@ -14,7 +14,7 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  hide:boolean=true
+  hide:boolean=true 
 
  signUpForm = new FormGroup({
     name: new FormControl ('',[Validators.required , Validators.minLength(4)] ),
@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
         error:({message})=>`${message}`
       })
     ).subscribe(()=>{
-        this.router.navigate(['home'])
+        this.router.navigate([''])
     })
 
 

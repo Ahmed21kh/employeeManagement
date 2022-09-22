@@ -36,7 +36,7 @@
         <th >{{item.phone}} </th> -->
         <th >{{item.salary | currency:"USD"}}</th>
         <!-- <th >{{item.$key}}  </th> -->
-        <th ><a href="#" [routerLink]="['/employee/'+ item.$key]" class="btn btn-primary"> More   <i class="fa fa-info-circle" ></i> </a></th>
+        <th ><a href="#" [routerLink]="['employee/'+ item.$key]" class="btn btn-primary"> More   <i class="fa fa-info-circle" ></i> </a></th>
 
       </tr>
 
@@ -48,7 +48,7 @@
 
 
   </div>
-  <ng-template #Noemployee > <h2>OOPS!! Empty Database please Login to show database!!</h2></ng-template>
+  <ng-template #Noemployee > <h2>OOPS!! Empty Database Please Login to show database !!</h2></ng-template>
 
 
 

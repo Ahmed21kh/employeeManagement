@@ -4,6 +4,7 @@ import { Employee } from 'src/app/Employee';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute , ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-editemployee',
@@ -25,7 +26,8 @@ export class EditemployeeComponent implements OnInit {
   disableSalary: any;
 
 
-  constructor(public employeeService:EmployeeService , public router:Router , public activatedRoute:ActivatedRoute, public flashMessagesService:FlashMessagesService) { }
+
+  constructor(public employeeService:EmployeeService , public router:Router , public activatedRoute:ActivatedRoute, public flashMessagesService:FlashMessagesService ,public toast:HotToastService) { }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -42,7 +44,23 @@ export class EditemployeeComponent implements OnInit {
   {
 
     if(!fo.valid){
-         this.flashMessagesService.show('Please write correct info ',{cssClass:'alert-danger',timeout:6000});
+      this.toast.error('Please write correct info!' ,{
+        style: {
+          border: '1px solid #ff0000',
+          padding: '16px',
+          color: '#ff0000',
+        },
+        iconTheme: {
+          primary: '#ff0000',
+          secondary: '#FFFAEE',
+        },
+        // autoClose: true,
+        // dismissible: false,
+        // theme: 'snackbar',
+        // // icon: '❎',
+        // duration: 2000,
+        // position: 'top-center'
+      })
          this.router.navigate(['edit-employee/'+ this.id]);
       // this.verifyForm = fo.value;
       // console.log( this.verifyForm);
@@ -50,7 +68,25 @@ export class EditemployeeComponent implements OnInit {
     }else
     {
       this.employeeService.ubdateEmployee(this.id, fo.value);
-      this.flashMessagesService.show(' Employee updated successfuly ! ',{cssClass:'alert-success',timeout:6000});
+
+      this.toast.success(' Employee updated successfuly !' ,{
+        style: {
+          border: '1px solid #21b11e',
+          padding: '16px',
+          color: ' #21b11e',
+        },
+        iconTheme: {
+          primary: ' #21b11e',
+          secondary: '#FFFAEE',
+
+        },
+        // autoClose: true,
+        // dismissible: false,
+        // theme: 'snackbar',
+        // // icon: '🔥 ',
+        // duration: 2000,
+        // position: 'top-center'
+      })
       this.router.navigate(['employee/'+ this.id])
       console.log("false");
     }

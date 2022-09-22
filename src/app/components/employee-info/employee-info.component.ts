@@ -5,6 +5,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute , ParamMap } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { HotToastService } from '@ngneat/hot-toast';
 @Component({
   selector: 'app-employee-info',
   templateUrl: './employee-info.component.html',
@@ -21,7 +22,7 @@ export class EmployeeInfoComponent implements OnInit {
   itemarray: any;
   ubdateSalaryInput:boolean=false
 
-  constructor( public employeeService:EmployeeService , public router:Router , public activatedRoute:ActivatedRoute, public flashMessagesModule:FlashMessagesService ) { }
+  constructor( public employeeService:EmployeeService , public router:Router , public activatedRoute:ActivatedRoute, public flashMessagesModule:FlashMessagesService , public toast:HotToastService) { }
 
   ngOnInit(): void {
     this.id=this.activatedRoute.snapshot.paramMap.get('id');
@@ -57,14 +58,48 @@ export class EmployeeInfoComponent implements OnInit {
 
   ubdateSalaryEmployee(id:string){
     this.employeeService.ubdateEmployee(this.id , this.employee);
-    this.flashMessagesModule.show("Salary Updated successfully ! :)",{cssClass:'alert-success',timeout:6000});
+    this.toast.success(' Salary Updated successfully ! :)' ,{
+      style: {
+        border: '1px solid #21b11e',
+        padding: '16px',
+        color: ' #21b11e',
+      },
+      iconTheme: {
+        primary: ' #21b11e',
+        secondary: '#FFFAEE',
+
+      },
+      // autoClose: true,
+      // dismissible: false,
+      // theme: 'snackbar',
+      // // icon: '🔥 ',
+      // duration: 2000,
+      // position: 'top-center'
+    })
     this.router.navigate(['employee/'+ this.id ]);
   }
   myDelete(){
     if(confirm("Are you sure ! :(")){
       this.employeeService.deleteEmployee(this.id);
-      this.flashMessagesModule.show("Employee Deleted successfully ! ",{cssClass:'alert-success',timeout:6000});
-    this.router.navigate(['/home']);
+      this.toast.success(' Employee Deleted successfuly !' ,{
+        style: {
+          border: '1px solid #21b11e',
+          padding: '16px',
+          color: ' #21b11e',
+        },
+        iconTheme: {
+          primary: ' #21b11e',
+          secondary: '#FFFAEE',
+
+        },
+        // autoClose: true,
+        // dismissible: false,
+        // theme: 'snackbar',
+        // // icon: '🔥 ',
+        // duration: 2000,
+        // position: 'top-center'
+      })
+    this.router.navigate(['/']);
     }
 
   }

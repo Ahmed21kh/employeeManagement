@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-user$ = this.authService.currentUser$
+  user$ = this.authService.currentUser$
   constructor( private authService:AuthService) { }
 
   ngOnInit(): void {

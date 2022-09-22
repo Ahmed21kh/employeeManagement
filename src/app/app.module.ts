@@ -40,16 +40,21 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { HotToastModule } from '@ngneat/hot-toast';
-import {MatMenuModule} from '@angular/material/menu'
+import {MatMenuModule} from '@angular/material/menu';
+import { AuthService } from './services/auth.service';
+import { AuthGuard  } from './guards/auth.guard';
+import {canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+const redirectToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectToHome = () => redirectLoggedInTo(['']);
 
 const appRoutes:Routes=[
-  {path:'home',pathMatch:'full', component:DashboardComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'add-employee', component:AddemployeeComponent},
-  {path:'edit-employee/:id', component:EditemployeeComponent},
-  {path:'employee/:id', component:EmployeeInfoComponent},
-  {path:'', component:LoginComponent},
-  {path:'register', component:RegisterComponent},
+  {path:'',pathMatch:'full', component:DashboardComponent,...canActivate(redirectToLogin)},
+  {path:'register', component:RegisterComponent,...canActivate(redirectToHome)},
+  {path:'add-employee', component:AddemployeeComponent,...canActivate(redirectToLogin)},
+  {path:'edit-employee/:id', component:EditemployeeComponent,...canActivate(redirectToLogin)},
+  {path:'employee/:id', component:EmployeeInfoComponent,...canActivate(redirectToLogin)},
+  {path:'login', component:LoginComponent,...canActivate(redirectToHome)},
+
 ]
 
 
@@ -122,7 +127,9 @@ const appRoutes:Routes=[
   providers: [
     AngularFireDatabase,
     EmployeeService,
-    // AngularFireAuth,
+    AuthService,
+    AngularFireAuth,
+    AuthGuard,
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'USD'}
   ],
   bootstrap: [AppComponent]

@@ -14,6 +14,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class LoginComponent implements OnInit {
   hide:boolean=true
+  signout:boolean=true
 emaill:string
 pass:string
 loginForm = new FormGroup({
@@ -32,8 +33,10 @@ loginForm = new FormGroup({
   }
   mySubmit(){
     if (!this.loginForm.valid){
+
       return;
     }
+
     const {email , password} = this.loginForm.value;
     this.authService.login( email ,password).pipe(
       this.toast.observe({
@@ -42,7 +45,10 @@ loginForm = new FormGroup({
         error:'email or password is wrong'
       })
     ).subscribe(()=>{
-        this.router.navigate(['home'])
+
+      
+        this.router.navigate([''])
+
     })
 
 
